@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Project page for 'COLMAP Is All You Need for Evaluating MultiView 3D Consistency': a robust, human-aligned framework for measuring 3D consistency in novel view synthesis.">
+  <meta name="keywords" content="3D consistency, novel view synthesis, NVS, MEt3R, VGGT, MASt3R, COLMAP, SysCON3D, hallucination, evaluation metrics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COLMAP Is All You Need for Evaluating MultiView 3D Consistency</title>
+  <link rel="icon" href="data:,">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    .construction-banner {
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      padding: 0.9rem 1.1rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: #6b5400;
+    }
+    .construction-banner strong { color: #4a3a00; }
+    .coming-soon-btn {
+      opacity: 0.55;
+      cursor: not-allowed !important;
+    }
+    .syscon-grid img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #e5e5e5;
+    }
+    .syscon-grid figcaption {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 0.3rem;
+    }
+    .takeaway-card {
+      background: #f7f9fc;
+      border-radius: 6px;
+      padding: 1.1rem 1.2rem;
+      height: 100%;
+    }
+    .takeaway-card h4 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 600;
+      color: #1f3a5f;
+      margin-bottom: 0.4rem;
+    }
+    table.compare-table { margin: 0 auto; }
+    table.compare-table th, table.compare-table td {
+      text-align: center;
+      padding: 0.45rem 0.9rem;
+    }
+    .check  { color: #2e7d32; font-weight: 700; }
+    .cross  { color: #c62828; font-weight: 700; }
+
+    .recon-grid model-viewer {
+      width: 100%;
+      height: 280px;
+      background: #0e1115;
+      border-radius: 6px;
+      --poster-color: transparent;
+    }
+    .recon-grid figcaption {
+      text-align: center;
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 600;
+      color: #1f3a5f;
+      margin-top: 0.4rem;
+    }
+    .diag-card {
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      height: 100%;
+    }
+    .diag-card .stat {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #c62828;
+      line-height: 1.1;
+    }
+    .diag-card .stat .unit {
+      font-size: 0.95rem;
+      color: #555;
+      font-weight: 500;
+    }
+    .diag-card h4 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 600;
+      color: #1f3a5f;
+      margin: 0.4rem 0 0.4rem 0;
+    }
+    .diag-card p {
+      font-size: 0.92rem;
+      color: #444;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">COLMAP Is All You Need for Evaluating MultiView 3D Consistency</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Soumava Paul<sup>*</sup>,
+            </span>
+            <span class="author-block">
+              Prakhar Kaushik<sup>*</sup>,
+            </span>
+            <span class="author-block">
+              Alan Yuille
+            </span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 0.4rem;">
+            <span class="author-block">CCVL, Johns Hopkins University</span>
+          </div>
+          <div class="is-size-7 publication-authors" style="margin-top: 0.2rem; color:#666;">
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Paper -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark coming-soon-btn"
+                   title="Coming soon">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper (coming soon)</span>
+                </a>
+              </span>
+              <!-- arXiv -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark coming-soon-btn"
+                   title="Coming soon">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv (coming soon)</span>
+                </a>
+              </span>
+              <!-- Code -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark coming-soon-btn"
+                   title="Coming soon">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (coming soon)</span>
+                </a>
+              </span>
+              <!-- SysCON3D -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark coming-soon-btn"
+                   title="Coming soon">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>SysCON3D Benchmark (coming soon)</span>
+                </a>
+              </span>
+              <!-- Human Eval -->
+              <span class="link-block">
+                <a href="https://mvp18.github.io/nvs-human-eval"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-users"></i></span>
+                  <span>Human Evaluation</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="Teaser figure: existing data-driven 3D metrics behave inconsistently under outliers and noise.">
+      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+        Popular metrics like <em>MEt3R</em> behave inconsistently in the presence of outliers and noise,
+        inheriting biases from their underlying 3D reconstruction backbones (MASt3R, VGGT).
+        We analyze these issues and propose <strong>robust, human-aligned</strong> alternatives.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 1rem;">
+  <div class="container is-max-desktop">
+    <div class="construction-banner">
+      <strong>Site under construction.</strong>
+      We will progressively roll out: the arXiv preprint, the code release,
+      the <em>SysCON3D</em> benchmark download, interactive hallucination demos for 3D reconstruction
+      backbones (VGGT / MASt3R / FASt3R / DUSt3R), per-backbone leaderboards, and the BibTeX entry.
+      Check back soon.
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 1.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Evaluating the 3D consistency of a large set of multi-view images for tasks such as
+            Novel View Synthesis (NVS) without human involvement remains an open problem.
+            Classical metrics -- Chamfer distance, PSNR, SSIM -- require ground truth and can ignore
+            scene-level 3D structure. Recently proposed neural metrics such as <em>MEt3R</em> rely
+            on data-driven 3D reconstruction backbones (e.g. MASt3R), but are limited by their
+            pairwise mean-error aggregation, which can mask scene-level inconsistencies.
+          </p>
+          <p>
+            We propose a unified parametric framework that decomposes such neural metrics into three
+            components -- <strong>backbone</strong>, <strong>residual</strong>, and
+            <strong>aggregation</strong> -- and explore distributional variants that show up to
+            <strong>3&times;</strong> improvement in win rate over MEt3R.
+            Through systematic analysis, we find that metrics built on data-driven backbones
+            (VGGT, MASt3R, FASt3R, DUSt3R) can behave unreliably and remain fragile in the presence
+            of outliers and noise. We trace this behavior to the backbones themselves: they
+            <em>refuse to abstain from generating 3D geometry</em>, producing dense outputs even
+            when the input image set lacks underlying 3D structure (e.g. cross-scene mixtures or
+            pure noise).
+          </p>
+          <p>
+            Motivated by these findings, we introduce a family of metrics built on classical,
+            learning-free <strong>COLMAP</strong>. They prove notably more robust to outliers and
+            noise and align <strong>up to 4&times;</strong> better with human judgment than MEt3R,
+            offering a stronger reference point for evaluating 3D consistency in NVS.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Key takeaways</h2>
+    <div class="columns" style="margin-top: 1rem;">
+      <div class="column">
+        <div class="takeaway-card">
+          <h4>Unified framework</h4>
+          <p>
+            We cast existing and new 3D-consistency metrics as a composition of
+            <em>backbone</em> &times; <em>residual</em> &times; <em>aggregation</em>,
+            and study distributional aggregations (e.g. MMD against a zero-error reference)
+            that preserve information mean-based scores discard.
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="takeaway-card">
+          <h4>SysCON3D stress test</h4>
+          <p>
+            A controlled benchmark that injects 3D inconsistencies -- single outliers,
+            patched regions, cross-scene mixtures, and Gaussian noise -- into multi-view sets,
+            and reveals where current metrics rank inconsistent inputs <em>above</em> consistent ones.
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="takeaway-card">
+          <h4>COLMAP holds up</h4>
+          <p>
+            Despite its age, COLMAP-based metrics are robust to noise/outliers and align
+            up to <strong>4&times;</strong> better with human ranking than MEt3R, suggesting
+            that learned 3D backbones are not yet drop-in replacements for evaluation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">How our metric compares</h2>
+    <div class="content has-text-centered" style="margin-top: 1rem;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Human-aligned</th>
+            <th>Robust</th>
+            <th>Scene-level</th>
+            <th>Interpretable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MEt3R</td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+          </tr>
+          <tr>
+            <td>PRISM</td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+            <td><span class="cross">&#10007;</span></td>
+          </tr>
+          <tr style="background: #eef6ee;">
+            <td><strong>Ours (COLMAP-based)</strong></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+            <td><span class="check">&#10003;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">3D backbones don't abstain on inconsistent inputs</h2>
+        <div class="content has-text-justified">
+          <p>
+            We feed data-driven 3D reconstruction backbones inputs that have <em>no</em> shared 3D
+            structure -- identical images, images from different scenes, and pure Gaussian noise -- and
+            observe that they <em>refuse to abstain from generating 3D geometry</em>, returning dense,
+            high-confidence point clouds anyway. Any consistency metric built on top inherits this
+            behavior.
+          </p>
+        </div>
+        <img src="./static/images/hallucinate.png" alt="Data-driven backbones such as VGGT/MASt3R still produce dense geometry on noise / cross-scene / identical-image inputs.">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Reconstructions on pure Gaussian noise</h2>
+    <div class="content has-text-centered" style="margin-top: 0.4rem;">
+      <p style="max-width: 760px; margin: 0 auto;">
+        Drag to orbit, or let it auto-rotate. All four backbones are fed
+        <strong>multi-view sets of pure Gaussian noise</strong> -- inputs with no underlying 3D
+        structure -- and still return dense, structured point clouds.
+      </p>
+    </div>
+
+    <div class="columns is-multiline recon-grid" style="margin-top: 1rem;">
+      <div class="column is-half">
+        <figure>
+          <model-viewer src="./static/models/vggt_noise.glb"
+                        alt="VGGT reconstruction from pure Gaussian noise input."
+                        camera-controls
+                        auto-rotate
+                        auto-rotate-delay="0"
+                        rotation-per-second="60deg"
+                        interaction-prompt="none"
+                        exposure="1.1"
+                        shadow-intensity="0">
+          </model-viewer>
+          <figcaption>VGGT</figcaption>
+        </figure>
+      </div>
+      <div class="column is-half">
+        <figure>
+          <model-viewer src="./static/models/mast3r_noise.glb"
+                        alt="MASt3R reconstruction from pure Gaussian noise input."
+                        camera-controls
+                        auto-rotate
+                        auto-rotate-delay="0"
+                        rotation-per-second="60deg"
+                        interaction-prompt="none"
+                        exposure="1.1"
+                        shadow-intensity="0">
+          </model-viewer>
+          <figcaption>MASt3R</figcaption>
+        </figure>
+      </div>
+      <div class="column is-half">
+        <figure>
+          <model-viewer src="./static/models/dust3r_noise.glb"
+                        alt="DUSt3R reconstruction from pure Gaussian noise input."
+                        camera-controls
+                        auto-rotate
+                        auto-rotate-delay="0"
+                        rotation-per-second="60deg"
+                        interaction-prompt="none"
+                        exposure="1.1"
+                        shadow-intensity="0">
+          </model-viewer>
+          <figcaption>DUSt3R</figcaption>
+        </figure>
+      </div>
+      <div class="column is-half">
+        <figure>
+          <model-viewer src="./static/models/fast3r_noise.glb"
+                        alt="FASt3R reconstruction from pure Gaussian noise input."
+                        camera-controls
+                        auto-rotate
+                        auto-rotate-delay="0"
+                        rotation-per-second="60deg"
+                        interaction-prompt="none"
+                        exposure="1.1"
+                        shadow-intensity="0">
+          </model-viewer>
+          <figcaption>FASt3R</figcaption>
+        </figure>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color:#666; text-align:center; margin-top: 0.5rem;">
+      A model that knew when to <em>abstain</em> would return an empty cloud. None of these do.
+    </p>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Why do they not abstain? Four diagnostics</h2>
+    <div class="content has-text-centered" style="margin-top: 0.3rem;">
+      <p style="max-width: 760px; margin: 0 auto;">
+        We probe each backbone with controlled cross-scene mixtures and Gaussian-noise inputs and
+        track <em>where</em> the failure happens -- before features are even compared.
+      </p>
+    </div>
+
+    <div class="columns is-multiline" style="margin-top: 0.6rem;">
+
+      <div class="column is-half">
+        <div class="diag-card">
+          <div class="stat">&minus;63<span class="unit">&nbsp;pp</span></div>
+          <h4>Zero-overlap rate underestimation</h4>
+          <p>
+            On the hardest cross-scene mixture (L<sub>3</sub>, where 89% of pairs are cross-scene),
+            DUSt3R reports zero-overlap on only 26% of pairs. MASt3R, FASt3R, and VGGT
+            still under-detect by 21, 48, and 18&nbsp;pp respectively. The backbone declares
+            overlap where geometrically there should be none.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-half">
+        <div class="diag-card">
+          <div class="stat">100<span class="unit">% on noise</span></div>
+          <h4>Cross-scene FNR -- hallucinated correspondences</h4>
+          <p>
+            Conditioning only on truly cross-scene pairs, DUSt3R falsely declares overlap on
+            64-77% across mixture levels; MASt3R is the most conservative at 18-26%.
+            On Gaussian noise, MASt3R, DUSt3R, and VGGT hallucinate overlap on
+            <strong>every</strong> pair; FASt3R on 22.7% of pairs.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-half">
+        <div class="diag-card">
+          <div class="stat">~0.4<span class="unit">&nbsp;gap, large &sigma;</span></div>
+          <h4>DINOv2 residuals don't separate</h4>
+          <p>
+            Once the backbone declares two views overlap, cross-scene DINOv2 cosine residuals
+            are only ~0.42-0.46 above same-scene residuals (MASt3R, DUSt3R), with
+            standard deviations large enough to overlap. DINOv2 captures semantic similarity,
+            not per-instance 3D identity, so spurious correspondences score nearly as low as
+            real ones.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-half">
+        <div class="diag-card">
+          <div class="stat">0.80<span class="unit">&nbsp;ghost mass (VGGT, noise)</span></div>
+          <h4>Ghost mass -- rendered pixels from the wrong scene</h4>
+          <p>
+            For the global backbones (FASt3R, VGGT) we measure the fraction of rendered pixels
+            supported by points from a foreign scene. On L<sub>3</sub> and full mixture roughly
+            40-50% of pixels come from wrong-scene points; on Gaussian noise VGGT's ghost
+            mass climbs to 0.80&nbsp;&plusmn;&nbsp;0.10 -- the reconstruction is mostly
+            invented.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="font-size: 0.9rem; color:#555; margin-top: 0.8rem; text-align:center;">
+      Per-backbone leaderboards across all SysCON3D levels (K&nbsp;&isin;&nbsp;{3,&nbsp;6,&nbsp;9})
+      are <em>coming soon</em>.
+    </p>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">SysCON3D &mdash; controlled inconsistency stress test</h2>
+    <div class="content has-text-justified" style="margin-top: 0.6rem;">
+      <p>
+        SysCON3D injects four families of 3D inconsistency into clean multi-view sets so we can
+        measure how a metric ranks <em>known</em> inconsistent samples against clean ones. The
+        benchmark and its leaderboard will be released soon.
+      </p>
+    </div>
+    <div class="columns is-multiline syscon-grid" style="margin-top: 0.6rem;">
+      <div class="column is-half">
+        <figure>
+          <img src="./static/images/syscon3d/one_outlier.jpg" alt="One-outlier perturbation example">
+          <figcaption>One-outlier -- replace one frame with an unrelated image.</figcaption>
+        </figure>
+      </div>
+      <div class="column is-half">
+        <figure>
+          <img src="./static/images/syscon3d/patched.jpg" alt="Patched perturbation example">
+          <figcaption>Patched -- paste a foreign region into a subset of frames.</figcaption>
+        </figure>
+      </div>
+      <div class="column is-half">
+        <figure>
+          <img src="./static/images/syscon3d/mixed.jpg" alt="Cross-scene mixture example">
+          <figcaption>Cross-scene mixture -- interleave frames from different scenes.</figcaption>
+        </figure>
+      </div>
+      <div class="column is-half">
+        <figure>
+          <img src="./static/images/syscon3d/gaussian.jpg" alt="Gaussian noise perturbation example">
+          <figcaption>Gaussian noise -- replace pixel content with random noise.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <img src="./static/images/human_study.png" alt="Human evaluation interface for ranking NVS outputs.">
+      </div>
+      <div class="column is-half">
+        <h2 class="title is-3">Human evaluation study</h2>
+        <div class="content has-text-justified">
+          <p>
+            We ground all metric claims in a structured human study where evaluators view two
+            NVS-rendered video clips side-by-side and rank them along three independent axes:
+            <em>3D consistency</em>, <em>realism</em>, and <em>plausibility w.r.t.&nbsp;the input photos</em>.
+          </p>
+          <p>
+            Each pair supports variable-speed playback and an optional free-text "why" prompt per axis,
+            so judgments capture which dimension drove the preference rather than collapsing to a single
+            scalar.
+          </p>
+          <p>
+            Sessions track a configurable target number of votes per evaluator, enabling multi-rater
+            agreement analysis on top of the raw rankings.
+          </p>
+          <p>
+            <a href="https://mvp18.github.io/nvs-human-eval"
+               class="button is-small is-link is-rounded">
+              <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+              <span>Open the human evaluation site</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{paul2026colmap,
+  author  = {Paul, Soumava and Kaushik, Prakhar and Yuille, Alan},
+  title   = {COLMAP Is All You Need for Evaluating MultiView 3D Consistency},
+  year    = {2026},
+  note    = {Preprint coming soon}
+}</code></pre>
+    <p style="font-size: 0.9rem; color: #666;">A finalized BibTeX entry will be posted here once the arXiv preprint is live.</p>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Page template adapted from
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+            licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
