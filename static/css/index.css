@@ -155,3 +155,52 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.syscon-demo-control {
+  background: #f7f3e8;
+  border: 1px solid #e8ddc8;
+  border-radius: 10px;
+  margin: 1.2rem auto 0;
+  max-width: 760px;
+  padding: 1rem 1.1rem;
+}
+
+.syscon-demo-control label {
+  color: #1f3a5f;
+  display: block;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.syscon-demo-control p {
+  color: #444;
+  font-size: 0.92rem;
+  margin-top: 0.7rem;
+}
+
+.syscon-demo-control .syscon-demo-hint {
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.recon-grid.syscon-demo-grid model-viewer {
+  background: linear-gradient(180deg, #fffdf7 0%, #eee7d8 100%);
+  border: 1px solid #e2d6c2;
+  height: 250px;
+}
+
+.syscon-demo-grid figure {
+  height: 100%;
+}
+
+.syscon-demo-grid figcaption small {
+  color: #666;
+  display: block;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-top: 0.15rem;
+}

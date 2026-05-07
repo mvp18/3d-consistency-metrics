@@ -25,6 +25,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script defer src="./static/js/syscon3d-demo.js"></script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
@@ -216,8 +217,8 @@
     <div class="construction-banner">
       <strong>Site under construction.</strong>
       We will progressively roll out: the arXiv preprint, the code release,
-      the <em>SysCON3D</em> benchmark download, interactive hallucination demos for 3D reconstruction
-      backbones (VGGT / MASt3R / FASt3R / DUSt3R), per-backbone leaderboards, and the BibTeX entry.
+      the <em>SysCON3D</em> benchmark download, per-backbone leaderboards, and the BibTeX entry.
+      The interactive SysCON3D reconstruction gallery below is available now.
       Check back soon.
     </div>
   </div>
@@ -367,81 +368,137 @@
 </section>
 
 
-<section class="section" style="padding-top: 0;">
+<section class="section" id="interactive-syscon3d-demo" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Reconstructions on pure Gaussian noise</h2>
+    <h2 class="title is-3 has-text-centered">Interactive SysCON3D reconstruction gallery</h2>
     <div class="content has-text-centered" style="margin-top: 0.4rem;">
       <p style="max-width: 760px; margin: 0 auto;">
-        Drag to orbit, or let it auto-rotate. All four backbones are fed
-        <strong>multi-view sets of pure Gaussian noise</strong> -- inputs with no underlying 3D
-        structure -- and still return dense, structured point clouds.
+        Choose a deterministic SysCON3D stress-test sample and compare the point clouds produced by
+        MASt3R, DUSt3R, Fast3R, VGGT, and RobustVGGT. These are prerecorded GLB reconstructions from
+        the benchmark, so the project page stays lightweight and does not run live GPU inference.
       </p>
     </div>
 
-    <div class="columns is-multiline recon-grid" style="margin-top: 1rem;">
-      <div class="column is-half">
+    <div class="syscon-demo-control">
+      <label for="syscon3d-demo-scenario">SysCON3D sample</label>
+      <div class="select is-fullwidth">
+        <select id="syscon3d-demo-scenario">
+          <option value="consistent_bicycle_k09">L0 consistent scene - bicycle, K=9</option>
+          <option value="epsilon_bicycle_k09">L0 + imperceptible Gaussian noise - bicycle, K=9</option>
+          <option value="one_outlier_k09_000">One outlier view, K=9</option>
+          <option value="full_mixture_k09_000">Full cross-scene mixture, K=9</option>
+          <option value="gaussian_noise_k09_000">Pure Gaussian-noise images, K=9</option>
+          <option value="patched_gaussian_k09_000">Patched Gaussian corruption, K=9</option>
+        </select>
+      </div>
+      <p id="syscon3d-demo-description">
+        A clean, geometrically consistent Mip-NeRF360 bicycle sample. This is the L0 sanity-check case.
+      </p>
+      <p class="syscon-demo-hint">
+        Drag any panel to orbit the 3D point cloud. Use scroll or pinch to zoom.
+      </p>
+    </div>
+
+    <div class="columns is-multiline is-centered recon-grid syscon-demo-grid" style="margin-top: 1rem;">
+      <div class="column is-one-third-desktop is-half-tablet">
         <figure>
-          <model-viewer src="./static/models/vggt_noise.glb"
-                        alt="VGGT reconstruction from pure Gaussian noise input."
+          <model-viewer data-syscon3d-engine="mast3r"
+                        src="./static/models/syscon3d_demo/consistent_bicycle_k09_mast3r.glb"
+                        alt="MASt3R reconstruction for the selected SysCON3D sample."
                         camera-controls
                         auto-rotate
                         auto-rotate-delay="0"
-                        rotation-per-second="60deg"
+                        rotation-per-second="45deg"
                         interaction-prompt="none"
                         exposure="1.1"
                         shadow-intensity="0">
           </model-viewer>
-          <figcaption>VGGT</figcaption>
+          <figcaption>
+            MASt3R
+            <small id="syscon3d-caption-mast3r">L0 consistent scene - bicycle, K=9</small>
+          </figcaption>
         </figure>
       </div>
-      <div class="column is-half">
+      <div class="column is-one-third-desktop is-half-tablet">
         <figure>
-          <model-viewer src="./static/models/mast3r_noise.glb"
-                        alt="MASt3R reconstruction from pure Gaussian noise input."
+          <model-viewer data-syscon3d-engine="dust3r"
+                        src="./static/models/syscon3d_demo/consistent_bicycle_k09_dust3r.glb"
+                        alt="DUSt3R reconstruction for the selected SysCON3D sample."
                         camera-controls
                         auto-rotate
                         auto-rotate-delay="0"
-                        rotation-per-second="60deg"
+                        rotation-per-second="45deg"
                         interaction-prompt="none"
                         exposure="1.1"
                         shadow-intensity="0">
           </model-viewer>
-          <figcaption>MASt3R</figcaption>
+          <figcaption>
+            DUSt3R
+            <small id="syscon3d-caption-dust3r">L0 consistent scene - bicycle, K=9</small>
+          </figcaption>
         </figure>
       </div>
-      <div class="column is-half">
+      <div class="column is-one-third-desktop is-half-tablet">
         <figure>
-          <model-viewer src="./static/models/dust3r_noise.glb"
-                        alt="DUSt3R reconstruction from pure Gaussian noise input."
+          <model-viewer data-syscon3d-engine="fast3r"
+                        src="./static/models/syscon3d_demo/consistent_bicycle_k09_fast3r.glb"
+                        alt="Fast3R reconstruction for the selected SysCON3D sample."
                         camera-controls
                         auto-rotate
                         auto-rotate-delay="0"
-                        rotation-per-second="60deg"
+                        rotation-per-second="45deg"
                         interaction-prompt="none"
                         exposure="1.1"
                         shadow-intensity="0">
           </model-viewer>
-          <figcaption>DUSt3R</figcaption>
+          <figcaption>
+            Fast3R
+            <small id="syscon3d-caption-fast3r">L0 consistent scene - bicycle, K=9</small>
+          </figcaption>
         </figure>
       </div>
-      <div class="column is-half">
+      <div class="column is-one-third-desktop is-half-tablet">
         <figure>
-          <model-viewer src="./static/models/fast3r_noise.glb"
-                        alt="FASt3R reconstruction from pure Gaussian noise input."
+          <model-viewer data-syscon3d-engine="vggt"
+                        src="./static/models/syscon3d_demo/consistent_bicycle_k09_vggt.glb"
+                        alt="VGGT reconstruction for the selected SysCON3D sample."
                         camera-controls
                         auto-rotate
                         auto-rotate-delay="0"
-                        rotation-per-second="60deg"
+                        rotation-per-second="45deg"
                         interaction-prompt="none"
                         exposure="1.1"
                         shadow-intensity="0">
           </model-viewer>
-          <figcaption>FASt3R</figcaption>
+          <figcaption>
+            VGGT
+            <small id="syscon3d-caption-vggt">L0 consistent scene - bicycle, K=9</small>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <figure>
+          <model-viewer data-syscon3d-engine="robust_vggt"
+                        src="./static/models/syscon3d_demo/consistent_bicycle_k09_robust_vggt.glb"
+                        alt="RobustVGGT reconstruction for the selected SysCON3D sample."
+                        camera-controls
+                        auto-rotate
+                        auto-rotate-delay="0"
+                        rotation-per-second="45deg"
+                        interaction-prompt="none"
+                        exposure="1.1"
+                        shadow-intensity="0">
+          </model-viewer>
+          <figcaption>
+            RobustVGGT
+            <small id="syscon3d-caption-robust_vggt">L0 consistent scene - bicycle, K=9</small>
+          </figcaption>
         </figure>
       </div>
     </div>
     <p style="font-size: 0.85rem; color:#666; text-align:center; margin-top: 0.5rem;">
-      A model that knew when to <em>abstain</em> would return an empty cloud. None of these do.
+      A model that knew when to <em>abstain</em> would return an empty or low-confidence cloud on
+      inputs with no coherent scene. The learned backbones often return structured geometry anyway.
     </p>
   </div>
 </section>
@@ -528,9 +585,10 @@
     <h2 class="title is-3 has-text-centered">SysCON3D &mdash; controlled inconsistency stress test</h2>
     <div class="content has-text-justified" style="margin-top: 0.6rem;">
       <p>
-        SysCON3D injects four families of 3D inconsistency into clean multi-view sets so we can
+        SysCON3D injects controlled families of 3D inconsistency into clean multi-view sets so we can
         measure how a metric ranks <em>known</em> inconsistent samples against clean ones. The
-        benchmark and its leaderboard will be released soon.
+        interactive gallery above shows representative precomputed reconstructions; the full
+        benchmark and leaderboard will be released soon.
       </p>
     </div>
     <div class="columns is-multiline syscon-grid" style="margin-top: 0.6rem;">
